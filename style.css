@@ -1,165 +1,48 @@
-html {
-    scroll-behavior: smooth;
-}
-
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    background-color: #f5f7fa;
-    color: #333;
-}
-
-/* Header / Navigation */
-header {
-    background-color: #0a3d62;
-    color: white;
-    padding: 20px 40px;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav h1 {
-    font-size: 1.8rem;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Hero Section */
-main section:first-child {
-    text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(to right, #0a3d62, #3c6382);
-    color: white;
-}
-
-main section:first-child h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-main section:first-child p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: auto;
-    margin-bottom: 30px;
-}
-
-/* Focus Areas */
-section h3 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #0a3d62;
-}
-
-article {
-    background: white;
-    padding: 30px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-article h4 {
-    color: #0a3d62;
-    margin-bottom: 15px;
-}
-
-/* Layout for focus areas */
-main section:nth-child(2) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-}
-
-/* Footer */
-footer {
-    background-color: #0a3d62;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}/* Call-to-action button */
-.cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    margin-top: 20px;
-    background-color: #f6b93b; /* bright yellow */
-    color: #0a3d62; /* dark blue text */
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #e1a12b;
-    transform: scale(1.05);
-}
-
-/* Project focus images */
-article img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-/* Layout for focus area cards */
+/* Focus area cards container */
 .focus-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    padding: 40px 20px;
 }
 
-/* Individual article/card styling */
-article {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 300px;
+/* Individual card */
+.card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    width: 320px;
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
+    overflow: hidden;
 }
 
-/* Images in cards */
-article img {
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Images inside cards */
+.card img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    height: 200px;
+    object-fit: cover; /* ensures image fills the space without stretching */
+    border-bottom: 3px solid #f6b93b;
 }
 
+/* Card titles */
+.card h4 {
+    color: #0a3d62;
+    font-size: 1.4rem;
+    margin: 15px 0;
+}
 
+/* Card paragraphs */
+.card p {
+    color: #333;
+    padding: 0 20px 20px 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
