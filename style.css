@@ -131,4 +131,31 @@ article img {
     margin-bottom: 15px;
 }
 
+/* Layout for focus area cards */
+.focus-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual article/card styling */
+article {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Images in cards */
+article img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 
