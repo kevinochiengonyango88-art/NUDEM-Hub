@@ -122,4 +122,13 @@ footer {
     transform: scale(1.05);
 }
 
+/* Project focus images */
+article img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 
