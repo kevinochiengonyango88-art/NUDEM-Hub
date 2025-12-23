@@ -80,4 +80,10 @@ body {
   margin-top:4px;
   opacity:0.95;
 }
+.hero-intro{
+  max-width:620px;
+  font-size:0.95rem;
+  color:#f1f5f9;
+}
+
 
