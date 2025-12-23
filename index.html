@@ -1,30 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>NUDEM Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyamitta Unity & Development Empowerment Network — NUDEM HUB</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#002c66; --accent:#ffcc00; --muted:#6b7280; --bg:#f5f7fb; --card:#fff; --radius:12px; --max:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#0f1724;line-height:1.5;scroll-behavior:smooth}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%;transition:transform 0.3s ease;}
+
+/* Topbar */
+.topbar{background:var(--primary);color:#fff;position:sticky;top:0;z-index:100;padding:12px 0;box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+.nav{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 18px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:50px;border-radius:8px}
+.brand .title{font-weight:700;font-size:1.05rem}
+.nav-links{display:flex;gap:16px}
+.nav-links a{padding:8px 12px;border-radius:8px;font-weight:600;transition:0.25s}
+.nav-links a:hover{background:var(--accent);color:#002c66}
+
+/* Hero Section */
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;max-width:var(--max);margin:20px auto;padding:24px;background:linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0)),url('https://picsum.photos/id/1015/1600/900') center/cover no-repeat;border-radius:var(--radius);color:#fff;min-height:440px;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
+.hero .col{flex:1;min-width:300px}
+.hero h1{font-size:2.2rem;margin-bottom:12px;font-weight:800}
+.hero p{font-size:1rem;color:#f0f0f0;margin-bottom:16px}
+.hero .values{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.value-pill{background:rgba(255,255,255,0.15);padding:8px 12px;border-radius:999px;font-weight:700;font-size:0.85rem;color:#fff}
+.hero img{max-width:320px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+
+/* Main Layout */
+.main{max-width:var(--max);margin:20px auto;display:grid;grid-template-columns:2fr 1fr;gap:20px;padding:0 18px}
+.section{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,0.05);opacity:0;transform:translateY(20px);transition:opacity 0.8s ease, transform 0.8s ease;}
+.section.visible{opacity:1;transform:translateY(0);}
+.section h2{color:var(--primary);margin-bottom:12px;font-size:1.6rem}
+
+/* Projects Carousel */
+.carousel-wrapper{position:relative}
+.proj-carousel{display:flex;overflow-x:auto;gap:18px;padding-bottom:10px;scroll-behavior:smooth;scroll-snap-type:x mandatory}
+.proj-card{min-width:280px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:0.3s;flex-shrink:0;scroll-snap-align:start}
+.proj-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+.proj-card img{width:100%;height:160px;object-fit:cover}
+.proj-body{padding:12px}
+.proj-body h3{font-size:1.05rem;color:var(--primary);margin-bottom:6px}
+.proj-meta{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+
+/* Carousel Buttons */
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--primary);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;z-index:10;opacity:0.85;transition:0.25s}
+.carousel-btn:hover{opacity:1}
+#prevBtn{left:-20px}
+#nextBtn{right:-20px}
+
+/* Achievements Section */
+.achievements{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+.achievement-card{border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,0.08);background:#fff;text-align:center;padding:15px}
+.achievement-card img{width:80px;height:80px;object-fit:cover;margin:0 auto;border-radius:50%;margin-bottom:10px}
+.achievement-card h4{color:var(--primary);margin-bottom:6px;font-size:1rem}
+.achievement-card p{font-size:1.1rem;color:var(--primary);font-weight:700}
+
+/* Counter */
+.counter{font-size:1.8rem;font-weight:800;color:var(--accent)}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:12px}
+.gallery img{border-radius:8px;height:140px;object-fit:cover;transition:transform 0.3s, box-shadow 0.3s}
+.gallery img:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+
+/* Bursaries Section */
+.bursaries-list{display:grid;gap:12px}
+.bursary-card{padding:12px;background:#f0f4ff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+.bursary-card h4{color:var(--primary);margin-bottom:4px;font-size:1rem}
+.bursary-card p{color:var(--muted);font-size:0.85rem}
+.bursary-card button{margin-top:6px;padding:6px 12px;border:none;border-radius:8px;background:var(--accent);color:#002c66;font-weight:700;cursor:pointer;transition:0.25s}
+.bursary-card button:hover{transform:scale(1.05)}
+
+/* Rapogi Section */
+#rapogi-wrap{margin-top:12px;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+#rapogi-img{width:100%;height:320px;object-fit:cover;display:block;border-radius:12px}
+
+/* Right Sidebar */
+.right-card{display:flex;flex-direction:column;gap:16px}
+.news-item{display:flex;gap:12px;align-items:center}
+.news-thumb{width:80px;height:60px;border-radius:8px;object-fit:cover}
+.news-item h4{margin:0;font-size:0.95rem;color:var(--primary)}
+.news-item p{margin:2px 0 0 0;color:var(--muted);font-size:0.85rem}
+
+/* Footer */
+footer{background:var(--primary);color:#fff;padding:40px 18px;margin-top:30px;border-radius:12px}
+footer h3{margin-bottom:12px}
+footer p{color:#f0f0f0;max-width:400px}
+footer .foot-links{display:flex;gap:18px;margin-top:10px}
+
+/* Back to Top Button */
+#backToTop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#002c66;border:none;border-radius:50%;width:50px;height:50px;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);display:none;align-items:center;justify-content:center;z-index:1000;transition:0.3s}
+#backToTop:hover{transform:scale(1.1);}
+
+/* Responsive */
+@media(max-width:1024px){.main{grid-template-columns:1fr}}
+@media(max-width:480px){.hero{flex-direction:column}.hero img{margin-top:16px}}
+</style>
 </head>
 <body>
 
-<section class="hero">
-
-    <div class="hero-content">
-        <h1>Nyamitta Unity & Development Empowerment Movement Hub</h1>
-
-        <p class="slogan">#Kwe Kod Dongrouk</p>
-
-        <p class="tagline">Leadership, Peace, and Community Development</p>
-        <p class="tagline sw">Amani na Maendeleo</p>
+<!-- Navigation -->
+<div class="topbar">
+  <div class="nav">
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Coat_of_arms_of_Kenya.svg/1024px-Coat_of_arms_of_Kenya.svg.png" alt="NUDEM HUB logo">
+      <div class="title">Nyamitta Unity & Development Empowerment Network (NUDEM HUB)</div>
     </div>
-
-    <div class="hero-images">
-        <img src="unity.jpg" alt="Community Unity">
-        <img src="development.jpg" alt="Development Projects">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#projects-map">Map</a>
+      <a href="#bursaries">Bursaries</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#rapogi-section">Rapogi</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </div>
+  </div>
+</div>
 
-</section>
+<!-- Hero -->
+<header class="hero">
+  <div class="col">
+    <div class="eyebrow">Unity • Peace • Development • Empowerment</div>
+    <h1>"#Kwe Kod Dongrouk" <br><span style="font-size:1rem;font-weight:500">Leadership, Peace, and Community Development / Amani na Maendeleo</span></h1>
+    <p>
+      NUDEM HUB is a transformative platform led by Hon. Mark Ogolla Nyamitta, promoting transparent development projects,
+      empowering women and youth, and fostering unity across Migori County and the Nyanza region.
+    </p>
+    <div class="values">
+      <div class="value-pill">Unity</div>
+      <div class="value-pill">Peace</div>
+      <div class="value-pill">Development</div>
+      <div class="value-pill">Empowerment</div>
+      <div class="value-pill">Accountability</div>
+      <div class="value-pill">Transparency</div>
+      <div class="value-pill">Inclusivity</div>
+    </div>
+  </div>
+  <div>
+    <img src="https://www.parliament.go.ke/sites/default/files/2022-12/Nyamita%20Mark%20Ogolla.jpg" alt="Hon. Mark Ogolla Nyamita">
+  </div>
+</header>
 
+<!-- Main -->
+<main class="main">
+  <div>
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="carousel-wrapper">
+        <button id="prevBtn" class="carousel-btn">&#10094;</button>
+        <div class="proj-carousel" id="carousel">
+          <div class="proj-card">
+            <img src="https://picsum.photos/id/1016/800/500" alt="Community School construction">
+            <div class="proj-body">
+              <h3>Community School Construction — Uriri</h3>
+              <div class="proj-meta">Completed: 2024 • Education</div>
+              <p>New classrooms and teacher resources widening access to primary education. Women teachers empowered.</p>
+            </div>
+          </div>
+          <div class="proj-card">
+            <img src="https://picsum.photos/id/1025/800/500" alt="Hospital water supply">
+            <div class="proj-body">
+              <h3>Hospital Water Supply — County Hospitals</h3>
+              <div class="proj-meta">Ongoing • Health</div>
+              <p>Boreholes and piped networks securing clean water for patients and staff. Community health programs included.</p>
+            </div>
+          </div>
+          <div class="proj-card">
+            <img src="https://picsum.photos/id/1031/800/500" alt="Electrification initiative">
+            <div class="proj-body">
+              <h3>Rural Electrification Initiative</h3>
+              <div class="proj-meta">Planned 2025 • Energy</div>
+              <p>Connecting schools and clinics to electricity to improve learning and healthcare.</p>
+            </div>
+          </div>
+        </div>
+        <button id="nextBtn" class="carousel-btn">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section" id="achievements">
+      <h2>Key Achievements</h2>
+      <div class="achievements">
+        <div class="achievement-card">
+          <img src="https://picsum.photos/id/1040/400/300" alt="Scholarship">
+          <div class="achieve-body">
+            <h4>Scholarships Awarded</h4>
+            <p class="counter" data-target="200">0</p>
+          </div>
+        </div>
+        <div class="achievement-card">
+          <img src="https://picsum.photos/id/1050/400/300" alt="Health">
+          <div class="achieve-body">
+            <h4>Healthcare Projects</h4>
+            <p class="counter" data-target="15">0</p>
+          </div>
+        </div>
+        <div class="achievement-card">
+          <img src="https://picsum.photos/id/1060/400/300" alt="Infrastructure">
+          <div class="achieve-body">
+            <h4>Infrastructure Developments</h4>
+            <p class="counter" data-target="25">0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rapogi Section -->
+    <section class="section" id="rapogi-section">
+      <h2>Rapogi — Heart of Uriri</h2>
+      <div id="rapogi-wrap">
+        <img id="rapogi-img" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Migori_County_Scenery.jpg" alt="Rapogi, Uriri">
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="https://www.parliament.go.ke/sites/default/files/2022-12/Nyamita%20Mark%20Ogolla.jpg" alt="Hon. Mark at event">
+        <img src="https://picsum.photos/id/1080/300/200" alt="Women empowerment program">
+        <img src="https://picsum.photos/id/1081/300/200" alt="Community development project">
+        <img src="https://picsum.photos/id/1082/300/200" alt="School classroom inauguration">
+        <img src="https://picsum.photos/id/1083/300/200" alt="Healthcare initiative">
+        <img src="https://picsum.photos/id/1084/300/200" alt="Youth empowerment session">
+      </div>
+    </section>
+
+    <!-- Bursaries Section -->
+    <section class="section" id="bursaries">
+      <h2>Bursaries & Scholarships</h2>
+      <div class="bursaries-list">
+        <div class="bursary-card">
+          <h4>Secondary School Bursary — Uriri</h4>
+          <p>Supporting students from disadvantaged backgrounds with tuition fees.</p>
+          <button>Apply Now</button>
+        </div>
+        <div class="bursary-card">
+          <h4>University Scholarship — Migori</h4>
+          <p>Full tuition scholarship for top-performing students under NUDEM HUB.</p>
+          <button>Apply Now</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="right-card">
+    <h2>Latest News</h2>
+    <div class="news-item">
+      <img class="news-thumb" src="https://picsum.photos/id/1100/200/150" alt="News">
+      <div><h4>New School Opened</h4><p>Hon. Mark inaugurates Uriri Community School.</p></div>
+    </div>
+    <div class="news-item">
+      <img class="news-thumb" src="https://picsum.photos/id/1101/200/150" alt="News">
+      <div><h4>Water Supply Project Completed</h4><p>Clean water now available for Migori County Hospital.</p></div>
+    </div>
+  </aside>
+</main>
+
+<!-- Footer -->
+<footer id="contact">
+  <h3>Contact NUDEM HUB</h3>
+  <p>Email: info@nudemhub.org | Phone: +254 700 000000 | Location: Uriri, Migori County, Kenya</p>
+  <div class="foot-links">
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">YouTube</a>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="backToTop">&#8679;</button>
+
+<script>
+// Scroll animations
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + window.innerHeight - 100;
+  sections.forEach(sec => {
+    if(scrollPos > sec.offsetTop) sec.classList.add('visible');
+  });
+});
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 400) backToTop.style.display = 'flex';
+  else backToTop.style.display = 'none';
+});
+backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+// Counter animation
+const counters = document.querySelectorAll('.counter');
+counters.forEach(counter => {
+  let target = +counter.getAttribute('data-target');
+  let count = 0;
+  const step = target / 200;
+  const updateCount = () => {
+    count += step;
+    if(count < target){
+      counter.innerText = Math.floor(count);
+      requestAnimationFrame(updateCount);
+    } else counter.innerText = target;
+  };
+  updateCount();
+});
+
+// Carousel controls
+const carousel = document.getElementById('carousel');
+document.getElementById('prevBtn').addEventListener('click',()=>{carousel.scrollBy({left:-300, behavior:'smooth'})});
+document.getElementById('nextBtn').addEventListener('click',()=>{carousel.scrollBy({left:300, behavior:'smooth'})});
+</script>
 </body>
 </html>
+
