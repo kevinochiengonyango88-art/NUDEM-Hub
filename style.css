@@ -101,6 +101,19 @@ body {
   position:relative;
   z-index:2;
 }
+.nav-links{
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  font-size:0.9rem;
+}
+
+.nav-links a:first-child{
+  background:var(--accent);
+  color:#002c66;
+}
+
 
 
 
