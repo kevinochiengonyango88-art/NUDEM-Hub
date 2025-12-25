@@ -328,31 +328,32 @@ counters.forEach(counter => {
 const carousel = document.getElementById('carousel');
 document.getElementById('prevBtn').addEventListener('click',()=>{carousel.scrollBy({left:-300, behavior:'smooth'})});
 document.getElementById('nextBtn').addEventListener('click',()=>{carousel.scrollBy({left:300, behavior:'smooth'})});
-</script>
-</body>
-</html>// Hero Background Image Rotation (every 10 minutes)
+// Hero Background Image Rotation (every 10 minutes)
+const hero = document.querySelector('.hero');
+
 const heroImages = [
-  "https://yourusername.github.io/nudemhub/hero1.jpg",
-  "https://yourusername.github.io/nudemhub/hero2.jpg",
-  "https://yourusername.github.io/nudemhub/hero3.jpg"
+  "https://picsum.photos/id/1015/1600/900",
+  "https://picsum.photos/id/1024/1600/900",
+  "https://picsum.photos/id/1035/1600/900"
 ];
 
-let currentHeroIndex = 0;
+let currentIndex = 0;
 
 function changeHeroBackground() {
-  document.documentElement.style.setProperty(
-    '--hero-bg',
-    `url('${heroImages[currentHeroIndex]}')`
-  );
+  hero.style.backgroundImage = `
+    linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.75)),
+    url('${heroImages[currentIndex]}')
+  `;
 
-  currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+  currentIndex = (currentIndex + 1) % heroImages.length;
 }
 
 // Initial load
 changeHeroBackground();
 
-// Change every 10 minutes (600,000 ms)
+// Change every 10 minutes (600000 ms)
 setInterval(changeHeroBackground, 600000);
 
-
-
+</script
+</body>
+</html>
