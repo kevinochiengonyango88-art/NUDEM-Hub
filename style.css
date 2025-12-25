@@ -204,7 +204,16 @@ body {
     margin-top: 20px;
   }
 
+}/* Improve Hero Text Readability */
+.hero {
+  background-blend-mode: multiply;
 }
+
+.hero::before {
+  background: rgba(0, 44, 102, 0.65);
+}
+
+
 
 
 
