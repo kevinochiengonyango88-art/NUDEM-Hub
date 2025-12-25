@@ -131,7 +131,82 @@ body {
   background:var(--accent);
   color:#002c66;
   transform:translateY(-2px);
+}/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+
+  /* Hero Section */
+  .hero {
+    padding: 18px;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .main-slogan {
+    margin-bottom: 14px;
+  }
+
+  .slogan-luo {
+    font-size: 1.9rem;
+  }
+
+  .slogan-sw {
+    font-size: 1.3rem;
+  }
+
+  .slogan-en {
+    font-size: 1.1rem;
+  }
+
+  .hero-intro {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  /* Hero layout */
+  .hero {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .hero img {
+    max-width: 100%;
+    margin-top: 18px;
+  }
+
+  /* Navigation */
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  /* Main layout */
+  .main {
+    grid-template-columns: 1fr;
+    padding: 0 14px;
+  }
+
+  /* Sidebar */
+  .right-card {
+    margin-top: 20px;
+  }
+
 }
+
+
 
 
 
