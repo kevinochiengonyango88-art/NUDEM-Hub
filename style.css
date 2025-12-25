@@ -211,7 +211,33 @@ body {
 
 .hero::before {
   background: rgba(0, 44, 102, 0.65);
+}/* Make Homepage Hero Full & Bold */
+.hero {
+  min-height: 90vh;
+  padding: 60px 24px;
 }
+
+.hero .col {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 85vh;
+    padding: 40px 18px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
+
 
 
 
